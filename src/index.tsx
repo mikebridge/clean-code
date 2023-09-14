@@ -1,15 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import { LatestComic } from './latestComic'
+import { LatestComic2 } from './latestComic2'
+import { LatestComic3 } from './latestComic3'
+import { LatestComic4 } from './latestComic4'
+import { LatestComic5 } from './latestComic5'
+
+import { getXkcd } from './xkcdService'
+import { XkcdServiceContext } from './xkcdContext'
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LatestComic />,
+  },
+  {
+    path: "/di2",
+    element: <LatestComic2 />,
+  },
+  {
+    path: "/di3",
+    element: <LatestComic3 />,
+  },
+  {
+    path: "/di4",
+    element: <LatestComic4 />,
+  },
+  {
+    path: "/di5",
+    element: <LatestComic5 />,
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <XkcdServiceContext.Provider value={getXkcd}>
+      <RouterProvider router={router} />
+    </XkcdServiceContext.Provider>
   </React.StrictMode>
 );
 
