@@ -14,10 +14,15 @@ import { LatestComic5 } from './latestComic5'
 
 import { getXkcd } from './xkcdService'
 import { XkcdServiceContext } from './xkcdContext'
+import { Main } from './main'
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Main />,
+  },
+  {
+    path: "/di1",
     element: <LatestComic />,
   },
   {

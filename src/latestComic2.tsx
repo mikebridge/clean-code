@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { XKCDComic } from './types'
 import { Error } from './error'
 import { Loading } from './loading'
+import { Container } from './container'
 
-interface LatestComicDisplay {
+interface LatestComicDisplayProps {
   comic: XKCDComic
 }
 
@@ -14,15 +15,15 @@ interface LatestComicDisplay {
  *
  * The display doesn't know anything about the loader
  */
-export const LatestComicDisplay = ({comic}: LatestComicDisplay) => {
+export const LatestComicDisplay = ({comic}: LatestComicDisplayProps) => {
   return (
-    <div>
+    <Container>
       <h1>XKCD</h1>
       <div>
         <h2>{comic.title}</h2>
         <img src={comic.img} alt={comic.alt} />
       </div>
-    </div>
+    </Container>
   )
 }
 

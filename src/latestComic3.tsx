@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { XKCDComic } from './types'
 import { Error } from './error'
 import { Loading } from './loading'
+import { Container } from './container'
 
 interface LatestComicDisplay {
   comic: XKCDComic
@@ -13,7 +14,6 @@ interface LatestComicDisplay {
 const useComicLoader = () => {
   const [comic, setComic] = useState<XKCDComic>()
   const [error, setError] = useState<string | undefined>()
-  const isLoading = !comic
 
   useEffect(() => {
     fetch('http://localhost:3000/')
@@ -23,23 +23,23 @@ const useComicLoader = () => {
       .catch(e => setError(e.message))
   }, [setComic])
 
-  return {comic, error, isLoading}
+  return {comic, error}
 }
 
 export const LatestComicDisplay3 = ({comic}: LatestComicDisplay) => {
   return (
-    <div>
+    <Container>
       <h1>XKCD</h1>
       <div>
         <h2>{comic.title}</h2>
         <img src={comic.img} alt={comic.alt} />
       </div>
-    </div>
+    </Container>
   )
 }
 
 export const LatestComic3 = () => {
-  const { comic, error, isLoading } = useComicLoader()
+  const { comic, error } = useComicLoader()
 
   if (error) {
     return (<Error message={JSON.stringify(error)}  />)

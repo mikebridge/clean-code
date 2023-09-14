@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { XKCDComic } from './types'
 import { Error } from './error'
+import { Container } from './container'
 
 /**
  * Loading in one component
@@ -20,7 +21,7 @@ export const LatestComic = () => {
   }, [setComic])
 
   return (
-    <div>
+    <Container>
       <h1>XKCD</h1>
       {comic &&
         <div>
@@ -29,6 +30,7 @@ export const LatestComic = () => {
         </div>
       }
       {error && <Error message={JSON.stringify(error)} /> }
-    </div>
+    </Container>
+
   )
 }
